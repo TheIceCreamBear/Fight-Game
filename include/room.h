@@ -3,11 +3,16 @@
 
 #include "object.h"
 #include "interactable.h"
+#include "roomtype.h"
 #include "types.h"
+
+#define MAX_ROOM_DIFFICULTY 10
 
 struct room {
     struct object obj;
     struct interactable *contents;
+
+    struct room *up, *down, *left, *right;
     RoomType rtype;
     int difficulty;
 };

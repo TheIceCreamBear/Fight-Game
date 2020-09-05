@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 
 #include "types.h"
@@ -8,16 +9,34 @@ void init(void) {
     log_init();
 }
 
+void allocated_or_die(void *arg) {
+    if (!arg) {
+        fprintf(stderr, FATAL "malloc() returned null! Aborting\n");
+        _Exit(EXIT_FAILURE);
+    }
+}
+
 int main(int argc, char **argv) {
-    Room r;
-
+    Room start;
+    Room *iterator = &start;
+    
     init();
-    __room_init(&r);
-    r.obj.init(&r);
-
     logs("Hello, world!");
     logs(INFO "Green!");
     logs(WARN "Yellow!");
     logs(FATAL "Red!");
-    return 0;
+
+    __room_init(&start);
+    for (int i = 0; i < 9; i++) {
+        Room *r = malloc(sizeof(Room));
+        __room_init(r);
+        r->down = iterator;
+        iterator->up = r;
+        iterator = r;
+    }
+
+    for (iterator = &start; iterator; iterator = iterator->up) {
+        __room_interact(iterator);
+    }
+    _Exit(EXIT_SUCCESS);
 }

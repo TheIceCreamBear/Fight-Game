@@ -1,6 +1,8 @@
 #ifndef ROOM_TYPE_H
 #define ROOM_TYPE_H
 
+#define NUM_TYPES 7
+
 enum __room_type {
     START, // no enemies, anything
     HALLWAY, // rare enemy, chests
@@ -10,5 +12,7 @@ enum __room_type {
     MYSTIC, // tbd. magical items and creatures?
     NON_EXISTENT // no room here.
 };
+
+const char *rtype_str(enum __room_type rtype);
 
 #endif
