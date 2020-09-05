@@ -1,5 +1,5 @@
 #ifndef TYPES_H
-#define TYPE_H
+#define TYPES_H
 
 #include "room.h"
 #include "roomtype.h"
