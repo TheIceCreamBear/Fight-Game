@@ -14,16 +14,17 @@ struct fight_info {
 void pack_fight(struct fight_info *, struct player *, struct enemy *, int);
 
 /* Use this to start a fight between a player and a number of enemies */
-void fight(struct fight_info *);
+static void fight(struct fight_info *);
 
+/* - Internals - */
 /* Start a fight with a single enemy */
-void _fight();
+static void _fight();
 
 /* Handle the player's turn */
-void _handle_player_turn(struct fight_info *);
+static void _handle_player_turn(struct fight_info *);
 
 /* Handle the enemy's turn */
-void _handle_enemy_turn(struct fight_info *);
+static void _handle_enemy_turn(struct fight_info *);
 
 void pack_fight(struct fight_info *finfo, struct player *p, struct enemy *e,
         int enemy_count) {
@@ -39,7 +40,7 @@ void fight(struct fight_info *finfo) {
     }
 }
 
-void _fight(struct fight_info *finfo) {
+static void _fight(struct fight_info *finfo) {
     while (finfo->player->health > 0 || 
             finfo->enemies[finfo->cur_enemy].health > 0) {
         _handle_player_turn(finfo);
@@ -47,7 +48,7 @@ void _fight(struct fight_info *finfo) {
     }
 }
 
-void  _handle_player_turn(struct fight_info *finfo) {
+static void handle_player_turn(struct fight_info *finfo) {
     /* TODO
      *
      * 1. Grab valid input
@@ -55,7 +56,7 @@ void  _handle_player_turn(struct fight_info *finfo) {
      */
 }
 
-void  _handle_enemy_turn(struct fight_info *finfo) {
+static void handle_enemy_turn(struct fight_info *finfo) {
     /* TODO
      * AI makes decision
      * perform decision
