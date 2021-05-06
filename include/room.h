@@ -11,9 +11,8 @@
 struct room {
     struct object obj;
     struct interactable *contents;
-
+    enum __room_type rtype;
     struct room *up, *down, *left, *right;
-    RoomType rtype;
     int difficulty;
 };
 
