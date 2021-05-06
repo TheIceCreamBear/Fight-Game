@@ -4,6 +4,7 @@
 #include "types.h"
 #include "logging.h"
 #include "colors.h"
+#include "utils.h"
 
 void init(void) {
     log_init();
