@@ -20,7 +20,7 @@ endif
 endif
 
 # Sources
-SOURCES=src/logging.c src/main.c src/object.c src/room.c src/roomtype.c src/utils.c
+SOURCES=src/logging.c src/main.c src/object.c src/room.c src/roomtype.c src/utils.c src/fight.c
 
 # Main targets
 .PHONY: all clean
