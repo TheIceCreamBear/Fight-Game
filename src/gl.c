@@ -11,4 +11,6 @@ const GLFWvidmode * setWindowedFullscreenHints(GLFWmonitor* mon) {
 
     // dont let it be resizeable
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
+    return vidMode;
 }
