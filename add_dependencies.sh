@@ -1,5 +1,5 @@
 # Install all dependencies
-pkgs='libglu1-mesa-dev libgl1-mesa-dev libglfw3-dev libglew-dev libglm-dev'
+pkgs='built-essential libfreetype6 libglu1-mesa-dev libgl1-mesa-dev libglfw3-dev libglew-dev libglm-dev'
 
 if ! dpkg -s $pkgs >/dev/null 2>&1; then
     sudo apt-get install $pkgs

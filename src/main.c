@@ -9,7 +9,6 @@
 #include "colors.h"
 #include "utils.h"
 
-
 void init(void) {
     log_init();
 }
