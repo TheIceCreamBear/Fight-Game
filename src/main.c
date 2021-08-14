@@ -3,6 +3,9 @@
 
 #include "types.h"
 #include "logging.h"
+
+#include "example-gl.h"
+
 #include "colors.h"
 #include "utils.h"
 
@@ -18,6 +21,8 @@ void allocated_or_die(void *arg) {
 }
 
 int main(int argc, char **argv) {
+    simpleGLFWExample();
+
     Room start;
     Room *iterator = &start;
     
