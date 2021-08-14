@@ -66,11 +66,70 @@ void simpleGLExample(GLFWwindow* window) {
     printf("OpenGL Renderer: %s\n", glGetString(GL_RENDERER));
     printf("OpenGL version : %s\n", glGetString(GL_VERSION));
 
+    // time related vars
+    double lastFrameTime = glfwGetTime();
+    double dDelta = 0.0f;
+    float delta = 0.0f;
+    float current = 0.0f;
+
     // TODO init gl objects
+    float r = 1.0f;
+    float g = 0.0f;
+    float b = 0.0f;
+    float rgbspeed = 0.75f;
+    int rgbstate = 1;
 
     // while the window hasnt been told to close, update the window
     while (!glfwWindowShouldClose(window)) {
-        // update here
+        // update here = = = = = = = = = =
+        // sets the clear color
+        glClearColor(r, g, b, 1.0f);
+
+        // makes clear color rainbow
+        float drgb = rgbspeed * delta;
+        switch (rgbstate) {
+            case 0:
+                b -= drgb;
+                r += drgb;
+                if (b <= 0.0f) {
+                    b = 0.0f;
+                }
+                if (r >= 1.0f) {
+                    r = 1.0f;
+                }
+                if (b <= 0.0f && r >= 1.0f) {
+                    rgbstate = 1;
+                }
+                break;
+            case 1:
+                r -= drgb;
+                g += drgb;
+                if (r <= 0.0f) {
+                    r = 0.0f;
+                }
+                if (g >= 1.0f) {
+                    g = 1.0f;
+                }
+                if (r <= 0.0f && g >= 1.0f) {
+                    rgbstate = 2;
+                }
+                break;
+            case 2:
+                g -= drgb;
+                b += drgb;
+                if (g <= 0.0f) {
+                    g = 0.0f;
+                }
+                if (b >= 1.0f) {
+                    b = 1.0f;
+                }
+                if (g <= 0.0f && b >= 1.0f) {
+                    rgbstate = 0;
+                }
+                break;
+        }
+
+        // end update = = = = = = = = = =
 
         // clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -82,5 +141,11 @@ void simpleGLExample(GLFWwindow* window) {
 
         // this is what puts our image out to the display
         glfwSwapBuffers(window);
+
+        // calculate how long it took to render
+        double curFrame = glfwGetTime();
+        dDelta = curFrame - lastFrameTime;
+        lastFrameTime = curFrame;
+        delta = (float) dDelta;
     }
 }
