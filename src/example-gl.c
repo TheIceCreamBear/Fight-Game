@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-#include "gl.h"
 #include "example-gl.h"
 
 void errorCallback(int errorCode, const char* msg) {
@@ -37,7 +36,7 @@ void simpleGLFWExample(void) {
 
     // set the hints for the windowed full screen
     GLFWmonitor* primaryMon = glfwGetPrimaryMonitor();
-    GLFWvidmode* primaryMonVid = setWindowedFullscreenHints(primaryMon);
+    const GLFWvidmode* primaryMonVid = setWindowedFullscreenHints(primaryMon);
 
     // create the window
     GLFWwindow* window = glfwCreateWindow(primaryMonVid->width, primaryMonVid->height, "The title is now", primaryMon, NULL);

@@ -4,7 +4,6 @@
 #include "types.h"
 #include "logging.h"
 
-#include "gl.h"
 #include "example-gl.h"
 
 #include "colors.h"

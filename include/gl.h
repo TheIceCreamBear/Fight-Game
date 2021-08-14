@@ -10,8 +10,8 @@ typedef struct ShaderProgram {
     GLuint vertex;
 } ShaderProgram;
 
-GLFWvidmode * setWindowedFullscreenHints(GLFWmonitor* mon) {
-    GLFWvidmode* vidMode = glfwGetVideoMode(mon);
+const GLFWvidmode * setWindowedFullscreenHints(GLFWmonitor* mon) {
+    const GLFWvidmode* vidMode = glfwGetVideoMode(mon);
 
     // set the window to use the current video mode
     glfwWindowHint(GLFW_RED_BITS, vidMode->redBits);
