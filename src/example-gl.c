@@ -53,8 +53,16 @@ void simpleGLFWExample(void) {
     // if we wanted to, the opengl stuff would go here
     simpleGLExample(window);
 
+    // clean up our mess
+    cleanUpVaosVbos();
+    cleanUpAllShaders();
+
     // stop GLFW stuff
     glfwTerminate();
+}
+
+void bindExampleAttribs(GLuint program) {
+    glBindAttribLocation(program, 0, "pos");
 }
 
 void simpleGLExample(GLFWwindow* window) {
@@ -73,6 +81,27 @@ void simpleGLExample(GLFWwindow* window) {
     float current = 0.0f;
 
     // TODO init gl objects
+    ShaderProgram* exampleShader = creteShaderProgram("res/shdr/example.vert", "res/shdr/example.frag", bindExampleAttribs);
+    GLint colorLoc = glGetUniformLocation(exampleShader->program, "color");
+
+    // = = = = = = = = = = initialize rectangle = = = = = = = = = = 
+    float verticies[] = {
+        -0.5f, 0.5f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.5f, 0.5f, 0.0f
+    };
+    int indices[] = {
+        0, 1, 3,
+        3, 1, 2
+    };
+    int vertexCount = 6; // lengeth of indicies
+
+    GLuint rectVao = createVao();
+    dataToAttribList(0, 3, verticies, 12);
+    unbindVao();
+    // = = = = = = = = = = end initialize rectangle = = = = = = = = = = 
+
     float r = 1.0f;
     float g = 0.0f;
     float b = 0.0f;
@@ -81,9 +110,9 @@ void simpleGLExample(GLFWwindow* window) {
 
     // while the window hasnt been told to close, update the window
     while (!glfwWindowShouldClose(window)) {
-        // update here = = = = = = = = = =
+        // = = = = = = = = = = update here = = = = = = = = = =
         // sets the clear color
-        glClearColor(r, g, b, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
         // makes clear color rainbow
         float drgb = rgbspeed * delta;
@@ -129,12 +158,25 @@ void simpleGLExample(GLFWwindow* window) {
                 break;
         }
 
-        // end update = = = = = = = = = =
+        // = = = = = = = = = = end update = = = = = = = = = =
 
         // clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // render here
+        // = = = = = = = = = = render = = = = = = = = = = = 
+        startShader(exampleShader);
+        glUniform3f(colorLoc, r, g, b);
+        
+        // draw rectangle
+        glBindVertexArray(rectVao);
+        glEnableVertexAttribArray(0);
+        glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_INT, indices);
+        // glDrawArrays(GL_TRIANGLES, 0, 6);
+        glDisableVertexAttribArray(0);
+        glBindVertexArray(0);
+        
+        stopShader();
+        // = = = = = = = = = = end render = = = = = = = = = = = 
 
         // read events that came in while we were rendering
         glfwPollEvents();

@@ -21,12 +21,12 @@ void allocated_or_die(void *arg) {
 }
 
 int main(int argc, char **argv) {
+    init();
     simpleGLFWExample();
 
     Room start;
     Room *iterator = &start;
     
-    init();
     logs("Hello, world!");
     logs(INFO "Green!");
     logs(WARN "Yellow!");
