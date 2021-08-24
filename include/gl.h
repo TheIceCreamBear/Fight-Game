@@ -44,4 +44,46 @@ void cleanUpVaosVbos(void);
 void dataToAttribList(int attribNum, int attribSize, float* data, int dataLength);
 // = = = = = = = = = = end vaos/vbos = = = = = = = = = = 
 
+// = = = = = = = = = = text (gl-text.c) = = = = = = = = = = 
+
+// maximum number of text objects allowed to exist at once. this forms a static pool of this many objects
+#define MAX_TEXT_OBJECTS 100
+
+// an enum representing all of the different fonts, used for mapping purposes. def is "default"
+typedef enum FontType {
+    def = 1
+} FontType;
+
+// struct to store information about a font, subject to expansion
+typedef struct Font {
+    GLuint fontTexture;
+    FontType id;
+} Font;
+
+// struct to store information about a text object on the screen, subject to major expansion
+typedef struct TextObject {
+    // normalized between -1 and 1
+    float x;
+    float y;
+    float maxX;
+    // gl stuff
+    GLuint vao; // TODO use a global vao? this would be private to gl-text.c
+    GLuint vbo;
+    // other data
+    FontType font;
+    float fontSize;
+} TextObject;
+
+// TODO hide this in gl-text.c ??? probably
+extern TextObject textObjects[MAX_TEXT_OBJECTS];
+
+// inits the text system and shaders, if any step fails, this will return 0, else (succeded) it will return 1
+int initTextSystem(void);
+
+// TODO text layout management, does it happen once or many times?
+// Does the Line and Word struct used for that get globalized?
+// figure this out
+
+// = = = = = = = = = = end text (gl-text.c) = = = = = = = = = = 
+
 #endif
