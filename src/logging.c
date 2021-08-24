@@ -4,6 +4,9 @@
 #include "logging.h"
 #include "colors.h"
 
+
+FILE *log_output_stream; /* Output stream to log to */
+
 /* Log a message */
 void logs(const char *str) {
     if (!log_output_stream) {
