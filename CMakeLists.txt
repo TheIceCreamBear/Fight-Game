@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)   # CMake version check
-project(antons_tutorials C CXX)               # Create project "simple_example"
+project(Fight-Game C CXX)             # Create project "Fight-Game"
 set(CMAKE_CXX_STANDARD 11)            # Enable c++11 standard
 
 #add source folder so the program can be compiled at build folder
@@ -18,6 +18,10 @@ add_executable(Fight-Game ${SOURCE_FILES} ${HEADERS})
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIR})
 include_directories("include")
+
+if (APPLE)
+    include_directories(/usr/local/include)
+endif()
 
 target_link_libraries(Fight-Game ${OPENGL_gl_LIBRARY})
 
