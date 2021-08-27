@@ -82,6 +82,9 @@ void simpleGLExample(GLFWwindow* window) {
 
     // TODO init gl objects
     ShaderProgram* exampleShader = creteShaderProgram("res/shdr/example.vert", "res/shdr/example.frag", bindExampleAttribs);
+    if (exampleShader == NULL) {
+        return;
+    }
     GLint colorLoc = glGetUniformLocation(exampleShader->program, "color");
 
     // = = = = = = = = = = initialize rectangle = = = = = = = = = = 
