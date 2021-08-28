@@ -39,6 +39,7 @@ int addShaderToSpll(ShaderProgram* sp) {
 
     // add shader to node
     splli->sp = sp;
+    splli->next = NULL; // for saftey
 
     // empty list
     if (spllHead == NULL) {
@@ -305,6 +306,7 @@ int addVao(GLuint vao) {
 
     // add shader to node
     vaolli->vao = vao;
+    vaolli->next = NULL; // for saftey
 
     // empty list
     if (vaollHead == NULL) {
@@ -328,6 +330,7 @@ int addVbo(GLuint vbo) {
 
     // add shader to node
     vbolli->vbo = vbo;
+    vbolli->next = NULL; // for saftey
 
     // empty list
     if (vbollHead == NULL) {
