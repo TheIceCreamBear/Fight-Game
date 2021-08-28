@@ -198,6 +198,7 @@ ShaderProgram * creteShaderProgram(const char* pathToVertex, const char* pathToF
     }
 
     // validate program
+    #ifdef FIGHT_VALIDATE_SHADER // disable shader validation here unless FIGHT_VALIDATE_SHADER is defined
     glValidateProgram(program);
 
     // check validation error
@@ -225,6 +226,7 @@ ShaderProgram * creteShaderProgram(const char* pathToVertex, const char* pathToF
         // return failure
         return NULL;
     }
+    #endif // FIGHT_VALIDATE_SHADER
 
     sp->program = program;
     sp->vertex = vert;
