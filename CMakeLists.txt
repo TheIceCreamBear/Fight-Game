@@ -49,6 +49,3 @@ if (GLEW_FOUND)
         target_link_libraries(Fight-Game ${GLEW_LIBRARIES})
     endif()
 endif()
-
-
-
