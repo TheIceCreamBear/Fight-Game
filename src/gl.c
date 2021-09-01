@@ -347,6 +347,7 @@ int addVbo(GLuint vbo) {
     return 1;
 }
 
+// TODO error checking
 // creates a new opengl VAO
 GLuint createVao(void) {
     // generate vao
@@ -390,13 +391,21 @@ void cleanUpVaosVbos(void) {
     }
 }
 
-// puts the given data into a vbo
-void dataToAttribList(int attribNum, int attribSize, float* data, int dataLength) {
+// TODO error checking
+// method to create an empty vbo and adds it to the list of vbos
+GLuint createVbo(void) {
     // generate vbo
     GLuint vbo;
     glGenBuffers(1, &vbo);
     // add to list
     addVbo(vbo);
+    
+    return vbo;
+}
+
+// puts the given data into a vbo
+void dataToAttribList(int attribNum, int attribSize, float* data, int dataLength) {
+    GLuint vbo = createVbo();
 
     // bind
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -408,5 +417,16 @@ void dataToAttribList(int attribNum, int attribSize, float* data, int dataLength
 
     // unbind
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+// binds the indicies buffer to the currently bound vao
+void bindIndiciesBuffer(int* indicies, int indiciesLen) {
+    GLuint vbo = createVbo();
+
+    // bind the buffer in element array mode
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo);
+    
+    // put data in buffer
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indiciesLen * sizeof(int), indicies, GL_STATIC_DRAW);
 }
 // = = = = = = = = = = end vaos/vbos = = = = = = = = = = 

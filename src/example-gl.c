@@ -102,6 +102,7 @@ void simpleGLExample(GLFWwindow* window) {
 
     GLuint rectVao = createVao();
     dataToAttribList(0, 3, verticies, 12);
+    bindIndiciesBuffer(indices, 6);
     unbindVao();
     // = = = = = = = = = = end initialize rectangle = = = = = = = = = = 
 

@@ -42,6 +42,9 @@ void cleanUpVaosVbos(void);
 
 // puts the given data into a vbo
 void dataToAttribList(int attribNum, int attribSize, float* data, int dataLength);
+
+// binds the indicies buffer to the currently bound vao
+void bindIndiciesBuffer(int* indicies, int indiciesLen);
 // = = = = = = = = = = end vaos/vbos = = = = = = = = = = 
 
 #endif
