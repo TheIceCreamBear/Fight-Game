@@ -6,10 +6,6 @@
 
 FILE *log_output_stream; /* Output stream to log to */
 
-
-/* Output stream to log to */
-FILE *log_output_stream;
-
 /* Log a message */
 void logs(const char *str) {
     if (!log_output_stream) {
