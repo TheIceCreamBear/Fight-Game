@@ -6,8 +6,9 @@
 
 #include "example-gl.h"
 
-#include "colors.h"
 #include "utils.h"
+
+FILE *log_output_stream; /* Output stream to log to */
 
 void init(void) {
     log_init();

@@ -2,7 +2,9 @@
 #include <time.h>
 
 #include "logging.h"
-#include "colors.h"
+#include "utils.h"
+
+FILE *log_output_stream; /* Output stream to log to */
 
 /* Log a message */
 void logs(const char *str) {

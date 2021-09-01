@@ -34,6 +34,3 @@ if (GLEW_FOUND)
     include_directories(${GLEW_INCLUDE_DIRS})
     target_link_libraries(Fight-Game ${GLEW_LIBRARIES})
 endif()
-
-
-
