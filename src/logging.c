@@ -4,7 +4,7 @@
 #include "logging.h"
 #include "utils.h"
 
-FILE *log_output_stream; /* Output stream to log to */
+extern FILE *log_output_stream; /* Output stream to log to */
 
 /* Log a message */
 void logs(const char *str) {
