@@ -4,6 +4,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+const GLFWvidmode * setWindowedFullscreenHints(GLFWmonitor* mon);
+
+// = = = = = = = = = = shaders = = = = = = = = = = 
+// struct defining a shader
 typedef struct ShaderProgram {
     GLuint program;
     GLuint fragment;
@@ -11,9 +15,6 @@ typedef struct ShaderProgram {
 } ShaderProgram;
 // TODO uniforms somehow...
 
-const GLFWvidmode * setWindowedFullscreenHints(GLFWmonitor* mon);
-
-// = = = = = = = = = = shaders = = = = = = = = = = 
 // creates a new shader program from the given path to the vertex and fragment shader files. Returns NULL on failure
 ShaderProgram * creteShaderProgram(const char* pathToVertex, const char* pathToFrag, void (*bindAttribs)(GLuint));
 
