@@ -11,7 +11,7 @@ file(GLOB HEADERS
   )
 
 #Main
-set(SOURCE_FILES src/gl.c src/logging.c src/main.c src/object.c src/room.c src/roomtype.c src/utils.c src/fight.c src/example-gl.c)
+set(SOURCE_FILES src/tests.c src/gl.c src/logging.c src/main.c src/object.c src/room.c src/roomtype.c src/utils.c src/fight.c src/example-gl.c)
 add_executable(Fight-Game ${SOURCE_FILES} ${HEADERS})
 
 include_directories("include")

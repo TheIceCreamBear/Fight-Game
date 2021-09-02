@@ -24,26 +24,6 @@ void allocated_or_die(void *arg) {
 int main(int argc, char **argv) {
     init();
     simpleGLFWExample();
-
-    Room start;
-    Room *iterator = &start;
-    
-    logs("Hello, world!");
-    logs(INFO "Green!");
-    logs(WARN "Yellow!");
-    logs(FATAL "Red!");
-
-    __room_init(&start);
-    for (int i = 0; i < 9; i++) {
-        Room *r = malloc(sizeof(Room));
-        __room_init(r);
-        r->down = iterator;
-        iterator->up = r;
-        iterator = r;
-    }
-
-    for (iterator = &start; iterator; iterator = iterator->up) {
-        __room_interact(iterator);
-    }
+    run_tests();
     _Exit(EXIT_SUCCESS);
 }
