@@ -14,13 +14,6 @@ void init(void) {
     log_init();
 }
 
-void allocated_or_die(void *arg) {
-    if (!arg) {
-        fprintf(stderr, FATAL "malloc() returned null! Aborting\n");
-        _Exit(EXIT_FAILURE);
-    }
-}
-
 int main(int argc, char **argv) {
     init();
     simpleGLFWExample();
