@@ -44,9 +44,11 @@ void *safe_malloc(size_t size) {
     if (!log_output_stream) {
         log_init();
     }
+
     void *ret = malloc(size);
     if (!ret) {
         logs(FATAL "malloc() failed - Is the system out of memory?\n");
         exit(ENOMEM); // TODO portability
     }
+    return ret;
 }
