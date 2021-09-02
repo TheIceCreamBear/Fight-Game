@@ -8,7 +8,7 @@
 
 #include "utils.h"
 
-FILE *log_output_stream; /* Output stream to log to */
+extern FILE *log_output_stream; /* Output stream to log to */
 
 void init(void) {
     log_init();
