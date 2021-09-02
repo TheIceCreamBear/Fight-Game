@@ -101,8 +101,8 @@ void simpleGLExample(GLFWwindow* window) {
     int vertexCount = 6; // lengeth of indicies
 
     GLuint rectVao = createVao();
-    dataToAttribList(0, 3, verticies, 12);
     bindIndiciesBuffer(indices, 6);
+    dataToAttribList(0, 3, verticies, 12);
     unbindVao();
     // = = = = = = = = = = end initialize rectangle = = = = = = = = = = 
 
@@ -174,7 +174,7 @@ void simpleGLExample(GLFWwindow* window) {
         // draw rectangle
         glBindVertexArray(rectVao);
         glEnableVertexAttribArray(0);
-        glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_INT, indices);
+        glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_INT, 0);
         // glDrawArrays(GL_TRIANGLES, 0, 6);
         glDisableVertexAttribArray(0);
         glBindVertexArray(0);
