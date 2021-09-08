@@ -49,3 +49,10 @@ if (GLEW_FOUND)
         target_link_libraries(Fight-Game ${GLEW_LIBRARIES})
     endif()
 endif()
+
+#OpenAL
+find_package(OpenAL REQUIRED)
+if (OPENAL_FOUND)
+    include_directories(${OPENAL_INCLUDE_DIR})
+    target_link_libraries(Fight-Game ${OPENAL_LIBRARY})
+endif()
