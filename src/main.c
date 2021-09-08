@@ -6,6 +6,7 @@
 
 #include "example-gl.h"
 
+#include "tests.h"
 #include "utils.h"
 
 extern FILE *log_output_stream; /* Output stream to log to */
