@@ -3,7 +3,12 @@
 
 // per https://cmake.org/cmake/help/latest/module/FindOpenAL.html
 // this line will include the openal header
+#ifdef __APPLE__
+#include <OpenAL/OpenAL.h>
+#else
 #include "al.h"
+#endif
+
 
 // = = = = = = = = = = init = = = = = = = = = = 
 
