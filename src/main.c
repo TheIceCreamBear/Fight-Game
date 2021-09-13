@@ -5,6 +5,7 @@
 #include "logging.h"
 
 #include "example-gl.h"
+#include "audio.h"
 
 #include "tests.h"
 #include "utils.h"
@@ -17,6 +18,7 @@ void init(void) {
 
 int main(int argc, char **argv) {
     init();
+    audioInit();
     simpleGLFWExample();
     run_tests();
     _Exit(EXIT_SUCCESS);
