@@ -1,11 +1,12 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-// per https://cmake.org/cmake/help/latest/module/FindOpenAL.html
-// this line will include the openal header
 #ifdef __APPLE__
+// this is seperate because vscode and just making sure to include the macos extra "goodies"
 #include <OpenAL/OpenAL.h>
 #else
+// per https://cmake.org/cmake/help/latest/module/FindOpenAL.html
+// this line will include the openal header
 #include "al.h"
 #include "alc.h"
 #endif
