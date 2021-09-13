@@ -2,10 +2,9 @@
 #include <stdlib.h>
 
 #include "utils.h"
-#include "object.h"
 #include "room.h"
 
-void __room_init(void *args) {
+void room_init(void *args) {
     Room *self = (Room *) args;
     self->up = self->down = self->left = self->right = NULL;
     self->rtype = START;
@@ -14,11 +13,7 @@ void __room_init(void *args) {
     // TODO import Go code from joseph's Fight.go
 }
 
-void __room_destroy(void *args) {
-    object_default_destroy(args);
-}
-
-void __room_interact(void *args) {
+void room_interact(void *args) {
     Room *self = (Room *) args;
 
     printf("self: %p\tup: %p\tdown: %p\tleft: %p\tright: %p\n", self, self->up, self->down, self->left, self->right);

@@ -3,7 +3,7 @@
 
 #define NUM_TYPES 7
 
-enum __room_type {
+enum room_type {
     START, // no enemies, anything
     HALLWAY, // rare enemy, chests
     GREAT_HALL, // big room, couple of chests/enemies or one big boi
@@ -13,6 +13,6 @@ enum __room_type {
     NON_EXISTENT // no room here.
 };
 
-const char *rtype_str(enum __room_type rtype);
+const char *rtype_str(enum room_type rtype);
 
 #endif
