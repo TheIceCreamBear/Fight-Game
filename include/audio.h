@@ -18,5 +18,14 @@
 int audioInit(void);
 
 // = = = = = = = = = = end init = = = = = = = = = = 
+// = = = = = = = = = = helper = = = = = = = = = = 
+
+// function to get and print all errors after a call to an AL function, returns 1 if an error was present
+int logALErrors(void);
+
+// function to get and print all errors after a call to an ALC function, returns 1 if an error was present
+int logALCErrors(void);
+
+// = = = = = = = = = = end helper = = = = = = = = = = 
 
 #endif
