@@ -7,6 +7,7 @@
 #include <OpenAL/OpenAL.h>
 #else
 #include "al.h"
+#include "alc.h"
 #endif
 
 
