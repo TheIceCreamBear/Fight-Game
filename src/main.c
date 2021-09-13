@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "types.h"
 #include "logging.h"
 
 #include "example-gl.h"

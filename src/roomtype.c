@@ -2,7 +2,7 @@
 
 #include "utils.h"
 
-const char *rtype_str(enum __room_type rtype) {
+const char *rtype_str(enum room_type rtype) {
     switch (rtype) {
         case START:
             return "START";

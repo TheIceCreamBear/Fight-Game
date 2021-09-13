@@ -1,26 +1,24 @@
 #ifndef ROOM_H
 #define ROOM_H
 
-#include "object.h"
-#include "interactable.h"
 #include "roomtype.h"
-#include "types.h"
 
-#define MAX_ROOM_DIFFICULTY 10
+#define ROOM_MAX_DIFFICULTY 10
 
 struct room {
-    struct object obj;
     struct interactable *contents;
-    enum __room_type rtype;
+    enum room_type rtype;
     struct room *up, *down, *left, *right;
     int difficulty;
 };
 
+typedef enum room_type RoomType;
+typedef struct room Room;
+
 /* object default function pointers */
-void __room_init(void *);
-void __room_destroy(void *);
+void room_init(void *);
 
 /* a room's interactable default function pointer */
-void __room_interact(void *);
+void room_interact(void *);
 
 #endif
