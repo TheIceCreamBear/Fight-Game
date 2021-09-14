@@ -27,5 +27,23 @@ int logALErrors(void);
 int logALCErrors(void);
 
 // = = = = = = = = = = end helper = = = = = = = = = = 
+// = = = = = = = = = = sources = = = = = = = = = = 
+
+// cleans up all memory used by AL sources
+void cleanUpSources(void);
+
+// creates a new AL source and adds it to srcll
+ALuint creteSource(void); // TODO roll off customization
+
+// = = = = = = = = = = end sources = = = = = = = = = =
+// = = = = = = = = = = buffers and buffer loading = = = = = = = = = =
+
+// cleans up all memory used by AL buffers
+void cleanUpBuffers(void);
+
+// creates a new AL buffer and adds it bufll
+ALuint createBuffer(void); // TODO buffer data
+
+// = = = = = = = = = = end buffers and buffer loading = = = = = = = = = =
 
 #endif

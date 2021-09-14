@@ -88,3 +88,128 @@ int logALCErrors(void) {
 }
 
 // = = = = = = = = = = end helper = = = = = = = = = = 
+// = = = = = = = = = = sources = = = = = = = = = = 
+
+// helper linked list
+struct srcll {
+    ALuint src;
+    struct srcll* next;
+};
+
+struct srcll* srcllHead = NULL;
+struct srcll* srcllTail = NULL;
+
+// adds the given src to the srcll for global cleanup later. returns 1 on success and 0 on failure
+int addSrc(ALuint src) {
+    struct srcll* srclli = malloc(sizeof(struct srcll));
+    if (srclli == NULL) {
+        return 0;
+    }
+
+    // add source to node
+    srclli->src = src;
+    srclli->next = NULL;
+
+    // empty list
+    if (srcllHead == NULL) {
+        srcllHead = srclli;
+        srcllTail = srcllHead;
+        return 1;
+    }
+
+    // non empty list
+    srcllTail->next = srclli;
+    srcllTail = srcllTail->next;
+    return 1;
+}
+
+// cleans up all memory used by AL sources
+void cleanUpSources(void) {
+    struct srcll* srclostpointer = srcllHead;
+    while (srcllHead != NULL) {
+        // delete the source
+        alDeleteSources(1, &srcllHead->src);
+
+        // move pointer, free srclostpointer, update srclostpointer
+        srcllHead = srcllHead->next;
+        free(srclostpointer);
+        srclostpointer = srcllHead;
+    }
+}
+
+// creates a new AL source and adds it to srcll
+ALuint creteSource(void) { // TODO roll off customization
+    // generate buffer
+    ALuint src;
+    alGenSources(1, &src);
+
+    // add to srcll
+    addSrc(src);
+
+    return src;
+}
+
+// = = = = = = = = = = end sources = = = = = = = = = =
+// = = = = = = = = = = buffers and buffer loading = = = = = = = = = =
+
+// helper linked list
+struct bufll {
+    ALuint buf;
+    struct bufll* next;
+};
+
+struct bufll* bufllHead = NULL;
+struct bufll* bufllTail = NULL;
+
+// adds the given buf to the bufll for global cleanup later. returns 1 on success and 0 on failure
+int addBuf(ALuint buf) {
+    struct bufll* buflli = malloc(sizeof(struct bufll));
+    if (buflli == NULL) {
+        return 0;
+    }
+
+    // add buffer to node
+    buflli->buf = buf;
+    buflli->next = NULL;
+
+    // empty list
+    if (bufllHead == NULL) {
+        bufllHead = buflli;
+        bufllTail = bufllHead;
+        return 1;
+    }
+
+    // non empty list
+    bufllTail->next = buflli;
+    bufllTail = bufllTail->next;
+    return 1;
+}
+
+// cleans up all memory used by AL buffers
+void cleanUpBuffers(void) {
+    struct bufll* buflostpointer = bufllHead;
+    while (bufllHead != NULL) {
+        // delete the buffer
+        alDeleteBuffers(1, &bufllHead->buf);
+
+        // move pointer, free buflostpointer, update buflostpointer
+        bufllHead = bufllHead->next;
+        free(buflostpointer);
+        buflostpointer = bufllHead;
+    }
+}
+
+// creates a new AL buffer and adds it bufll
+ALuint createBuffer(void) { // TODO buffer data
+    // generate buffer
+    ALuint buf;
+    alGenBuffers(1, &buf);
+    // add to list
+    addBuf(buf);
+    
+    return buf;
+}
+
+
+
+// = = = = = = = = = = end buffers and buffer loading = = = = = = = = = =
