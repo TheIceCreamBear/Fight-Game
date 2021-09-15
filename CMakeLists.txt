@@ -3,7 +3,7 @@ project(Fight-Game C CXX)             # Create project "Fight-Game"
 set(CMAKE_CXX_STANDARD 11)            # Enable c++11 standard
 
 #set to use all warning but disable deprecated-declarations
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated-declarations")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wno-deprecated-declarations")
 
 #add source folder so the program can be compiled at build folder
 include_directories(${CMAKE_SOURCE_DIR})
