@@ -35,4 +35,7 @@ struct location {
 int rand_in_range(int n, int m);
 void *safe_malloc(size_t size); // guaranteed malloc(), or die
 
+// string comparision case insensitive with a max size n
+int strincmp(const char* a, const char* b, int n);
+
 #endif
