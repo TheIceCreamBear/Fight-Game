@@ -64,3 +64,13 @@ int strincmp(const char* a, const char* b, int n) {
     }
     return 0;
 }
+
+// integer based, recurssive pow function, pow must be positive
+int powi(int base, int pow) {
+    // if pow is 0 or lower, return 1
+    if (pow < 1) {
+        return 1;
+    }
+
+    return base * powi(base, pow - 1);
+}

@@ -38,4 +38,7 @@ void *safe_malloc(size_t size); // guaranteed malloc(), or die
 // string comparision case insensitive with a max size n
 int strincmp(const char* a, const char* b, int n);
 
+// integer based, recurssive pow function, pow must be positive
+int powi(int base, int pow);
+
 #endif
