@@ -5,6 +5,7 @@
 #include "logging.h"
 
 #include "example-gl.h"
+#include "example-al.h"
 #include "audio.h"
 
 #include "tests.h"
@@ -14,12 +15,14 @@ extern FILE *log_output_stream; /* Output stream to log to */
 
 void init(void) {
     log_init();
+    audioInit();
 }
 
 int main(int argc, char **argv) {
     init();
-    audioInit();
+    simpleALExample();
     simpleGLFWExample();
+    cleanUpAllAL();
     run_tests();
     _Exit(EXIT_SUCCESS);
 }
