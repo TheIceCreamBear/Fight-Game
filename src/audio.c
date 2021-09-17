@@ -523,8 +523,12 @@ AudioFormat* readWavAudioData(char* file) {
 
         // reverse endianess of the sample
         for (int j = 0; j < format->channels; j++) {
-            for (int k = bytesPerChannel - 1; k >= 0; k--) {
-                format->data[dataOffset++] = sampleBuffer[j * bytesPerChannel + k];
+            // for (int k = bytesPerChannel - 1; k >= 0; k--) { // guess this endian flip wasnt needed???
+            for (int k = 0; k < bytesPerChannel; k++) {
+                format->data[dataOffset++] = sampleBuffer[j * bytesPerChannel + k] & 0xff;
+                if (bytesPerChannel == 1) {
+                    format->data[dataOffset - 1] -= 128;
+                }
 
                 // check bounds (before the ++ ran) to not make anything go wack
                 if (dataOffset - 1 >= format->dataSizeBytes) {
@@ -544,7 +548,7 @@ AudioFormat* readWavAudioData(char* file) {
         for (int j = 0; j < format->channels; j++) {
             long sample = 0;
             for (int k = 0; k < bytesPerChannel; k++) {
-                char byte = format->data[baseDataIndex + j * bytesPerChannel + k] & 0x00ff;
+                char byte = format->data[baseDataIndex + j * bytesPerChannel + k] & 0xff;
                 if (bytesPerChannel == 1) {
                     // bytes in 8 bit wav files are unsigned, so switch this to signed
                     byte -= 128;
