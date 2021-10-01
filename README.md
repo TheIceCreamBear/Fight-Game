@@ -1,3 +1,8 @@
+# Abandonment Notice
+As of Friday, October 1, 2021, this project is officially considered abandonded. Multiple factors lead to this decision, most of them being time and effort related, with others being how the project has changed from its initial inception.
+
+For the forseeable future, there will be ***no*** updates or work on this project (asside from the possibly "I'm bored" moment). Should this status change, this notice will be modified to reflect that change.
+
 # Fight-Game
 
 A C remake of *Fight.java* - a game that a good friend of mine and I made
