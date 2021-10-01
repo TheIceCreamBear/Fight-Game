@@ -1,4 +1,5 @@
 #include <errno.h>
+#include <ctype.h>
 
 #include "utils.h"
 #include "logging.h"
@@ -51,4 +52,25 @@ void *safe_malloc(size_t size) {
         exit(ENOMEM); // TODO portability
     }
     return ret;
+}
+
+// string comparision case insensitive with a max size n
+int strincmp(const char* a, const char* b, int n) {
+    for (int i = 0; i < n; i++) {
+        int d = tolower(a[i]) - tolower(b[i]);
+        if (d != 0) {
+            return d;
+        }
+    }
+    return 0;
+}
+
+// integer based, recurssive pow function, pow must be positive
+int powi(int base, int pow) {
+    // if pow is 0 or lower, return 1
+    if (pow < 1) {
+        return 1;
+    }
+
+    return base * powi(base, pow - 1);
 }

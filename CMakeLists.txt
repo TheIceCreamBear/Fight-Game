@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.6)   # CMake version check
 project(Fight-Game C CXX)             # Create project "Fight-Game"
 set(CMAKE_CXX_STANDARD 11)            # Enable c++11 standard
 
+#set to use all warning but disable deprecated-declarations
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wno-deprecated-declarations")
+
 #add source folder so the program can be compiled at build folder
 include_directories(${CMAKE_SOURCE_DIR})
 
@@ -11,7 +14,7 @@ file(GLOB HEADERS
   )
 
 #Main
-set(SOURCE_FILES src/tests.c src/gl.c src/logging.c src/main.c src/room.c src/roomtype.c src/utils.c src/fight.c src/example-gl.c)
+set(SOURCE_FILES src/tests.c src/gl.c src/logging.c src/main.c src/room.c src/roomtype.c src/utils.c src/fight.c src/audio.c src/example-gl.c src/example-al.c)
 add_executable(Fight-Game ${SOURCE_FILES} ${HEADERS})
 
 include_directories("include")
@@ -48,4 +51,11 @@ if (GLEW_FOUND)
     else()
         target_link_libraries(Fight-Game ${GLEW_LIBRARIES})
     endif()
+endif()
+
+#OpenAL
+find_package(OpenAL REQUIRED)
+if (OPENAL_FOUND)
+    include_directories(${OPENAL_INCLUDE_DIR})
+    target_link_libraries(Fight-Game ${OPENAL_LIBRARY})
 endif()
